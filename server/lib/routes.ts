@@ -12,15 +12,7 @@ export class Routes {
 
     app
       .route("/game/:id")
-      .get((req: Request, res: Response) => {
-        res.status(200).send({
-          message: "GET request successfulll!!!!",
-        });
-      })
-      .put((req: Request, res: Response) => {
-        res.status(200).send({
-          message: "PUT request successfulll!!!!",
-        });
-      });
+      .get(this.gameController.getGameByID)
+      .put(this.gameController.updateGame);
   }
 }

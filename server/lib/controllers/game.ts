@@ -25,12 +25,26 @@ export class GameController {
     });
   }
 
-  public getContactWithID(req: Request, res: Response) {
+  public getGameByID(req: Request, res: Response) {
     Game.findById(req.params.gameId, (err, contact) => {
       if (err) {
         res.send(err);
       }
       res.json(contact);
     });
+  }
+
+  public updateGame(req: Request, res: Response) {
+    Game.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true },
+      (err, game) => {
+        if (err) {
+          res.send(err);
+        }
+        res.json(game);
+      }
+    );
   }
 }
